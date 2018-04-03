@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
@@ -17,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -35,7 +37,8 @@ public class Usuario {
 	private EstadoCivil estadoCivil;
 	//private Endereco endereco;
 	//private Endereco enderecoComercial;
-	private List<Endereco> enderecos = new ArrayList<>();
+	//private List<Endereco> enderecos = new ArrayList<>();
+	private Veiculo veiculo;
 	
 	/*
 	@Embedded
@@ -73,14 +76,14 @@ public class Usuario {
 		return dataNascimento;
 	}
 	
-	@ElementCollection(fetch = FetchType.EAGER)
+	/*@ElementCollection(fetch = FetchType.EAGER)
 	@JoinTable(name = "usu_endereco", joinColumns = @JoinColumn(name = "id_usuario"))
 	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
-	}
+	}*/
 	
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
@@ -118,6 +121,18 @@ public class Usuario {
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_veiculo")
+	public Veiculo getVeiculo() {
+		return veiculo;
+	}
+
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
+	}
+	
+	
 	
 
 }
