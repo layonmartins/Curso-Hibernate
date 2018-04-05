@@ -1,8 +1,12 @@
 package curso.hibernate.heranca;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+//@DiscriminatorValue(value = "quatro_rodas")
+@Table(name="veiculo_quatro_rodas")
 public class VeiculoQuatroRodas extends VeiculoHeranca{
 
 	private Integer quantidadePortas;

@@ -1,13 +1,17 @@
 package curso.hibernate.heranca;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance
+@Inheritance(strategy = InheritanceType.JOINED)
+//@DiscriminatorColumn(name ="tipo_veiculo", discriminatorType = DiscriminatorType.STRING)
 public class VeiculoHeranca {
 
 	private Integer id;
