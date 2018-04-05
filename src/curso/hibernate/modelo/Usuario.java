@@ -18,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
@@ -38,7 +39,8 @@ public class Usuario {
 	//private Endereco endereco;
 	//private Endereco enderecoComercial;
 	//private List<Endereco> enderecos = new ArrayList<>();
-	private Veiculo veiculo;
+	//private Veiculo veiculo;
+	private List<Veiculo> veiculos = new ArrayList<>();
 	
 	/*
 	@Embedded
@@ -122,7 +124,20 @@ public class Usuario {
 		this.idade = idade;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
+	//@JoinColumn(name = "id_usuario")
+	@JoinTable(name="usu_veiculo",
+		joinColumns = @JoinColumn(name = "id_usuario"),
+		inverseJoinColumns = @JoinColumn(name = "id_veiculo"))
+	public List<Veiculo> getVeiculos() {
+		return veiculos;
+	}
+
+	public void setVeiculos(List<Veiculo> veiculos) {
+		this.veiculos = veiculos;
+	}
+
+	/*@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_veiculo")
 	public Veiculo getVeiculo() {
 		return veiculo;
@@ -130,7 +145,7 @@ public class Usuario {
 
 	public void setVeiculo(Veiculo veiculo) {
 		this.veiculo = veiculo;
-	}
+	}*/
 	
 	
 	

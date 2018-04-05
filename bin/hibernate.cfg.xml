@@ -26,6 +26,12 @@
         <!-- Names the annotated entity class -->
 		<mapping class="curso.hibernate.modelo.Usuario"/>
 		<mapping class="curso.hibernate.modelo.Veiculo"/>
+		<mapping class="curso.hibernate.modelo.Funcionario"/>
+		<mapping class="curso.hibernate.modelo.Projeto"/>
+		
+		<mapping class="curso.hibernate.heranca.VeiculoHeranca"/>
+		<mapping class="curso.hibernate.heranca.VeiculoQuatroRodas"/>
+		<mapping class="curso.hibernate.heranca.VeiculoDuasRodas"/>
 		
     </session-factory>
 

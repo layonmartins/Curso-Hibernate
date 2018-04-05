@@ -3,9 +3,11 @@ package curso.hibernate.teste;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.classic.Session;
+
 
 import curso.hibernate.modelo.Endereco;
 import curso.hibernate.modelo.EstadoCivil;
@@ -25,8 +27,16 @@ public class UsuarioTeste {
 		//usuario.setIdade(25);
 		
 		Veiculo fusca = new Veiculo("Fusca", 1966);
-		usuario.setVeiculo(fusca);
-		fusca.setUsuario(usuario);
+		Veiculo brasilia = new Veiculo("Brasilia", 1980);
+		
+		usuario.getVeiculos().add(fusca);
+		usuario.getVeiculos().add(brasilia);
+		
+		//usuario.setVeiculo(fusca);
+		//fusca.setUsuario(usuario);
+		//brasilia.setUsuario(usuario);
+		
+		
 		
 		/*Endereco endereco = new Endereco();
 		endereco.setCidade("Cidade teste");
@@ -40,14 +50,21 @@ public class UsuarioTeste {
 		enderecoComercial.setNumero(1234);
 		usuario.getEnderecos().add(enderecoComercial);*/
 		
+		/*Configuration configuration = new Configuration().configure();
+		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().
+				applySettings(configuration.getProperties());
+		SessionFactory factory = configuration.buildSessionFactory(builder.build());
+		Session session = factory.openSession();
+		session.beginTransaction();*/
 		
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
 		
-		
-		session.save(fusca);
-		//session.save(usuario);
+		session.save(usuario);
+		//session.save(fusca);
+		//session.save(brasilia);
+	
 		
 		
 		session.getTransaction().commit();

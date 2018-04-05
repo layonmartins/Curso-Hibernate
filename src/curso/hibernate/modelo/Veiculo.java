@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Veiculo implements Serializable {
@@ -59,7 +61,9 @@ public class Veiculo implements Serializable {
 		this.ano = ano;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy="veiculo")
+	//@OneToOne(cascade = CascadeType.ALL, mappedBy="veiculo")
+	@ManyToOne
+	@Transient
 	public Usuario getUsuario() {
 		return usuario;
 	}
